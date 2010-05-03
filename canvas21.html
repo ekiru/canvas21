@@ -9,33 +9,17 @@
 
 <script type="text/javascript" src="Iter.js"> </script>
 
+<script type="text/javascript" src="Colors.js"> </script>
+
 <script type="text/javascript" src="canvas21.js"> </script>
 </head>
 <body>
 
-<table>
-<tr id="dealer">
-<td> 
-  The dealer:
-</td>
-<td id="dealerScore">
-?
-</td>
-</tr>
-<tr id="player">
-<td>
-  The player:
-</td>
-<td id="playerScore">
-?
-</td>
-</tr>
-
-</table>
-<div id="result"> </div>
+<canvas id="gameCanvas" height=120 width=240> </canvas>
+<br />
 
 <script type="text/javascript">
-  var game = new Canvas21.Game();
+ var game = new Canvas21.Game();
 </script>
 
 <button type="button" onclick="game.step(true)"> Hit </button>
