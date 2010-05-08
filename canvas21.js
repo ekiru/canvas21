@@ -19,20 +19,27 @@ var Canvas21 = {};
 			|| this.suit == Card.Suits.Hearts
 	};
 
-	Card.prototype.render = function (ctx, x, y) {
+	Card.prototype.render = function (ctx, x, y, hidden) {
 		var oldFill = ctx.fillStyle;
 		var oldStroke = ctx.strokeStyle;
-		ctx.fillStyle = Colors.CardInterior;
-		ctx.fillRect(x, y, Card.Width, Card.Height);
+		if (hidden) {
+			ctx.fillStyle = Colors.CardBack;
+			ctx.fillRect(x, y, Card.Width, Card.Height);
+		} else {
+			ctx.fillStyle = Colors.CardInterior;
+			ctx.fillRect(x, y, Card.Width, Card.Height);
+
+			if (this.isRed()) {
+				ctx.fillStyle = Colors.RedColor;
+			} else {
+				ctx.fillStyle = Colors.BlackColor;
+			}
+			ctx.fillText(this.rankString() + this.suitString(),
+				x + 5, y + 10);
+		}
+
 		ctx.strokeStyle = Colors.CardBorder;
 		ctx.strokeRect(x, y, Card.Width, Card.Height);
-
-		if (this.isRed()) {
-			ctx.fillStyle = Colors.RedColor;
-		} else {
-			ctx.fillStyle = Colors.BlackColor;
-		}
-		ctx.fillText(this.rankString() + this.suitString(), x + 5, y + 10);
 
 		ctx.fillStyle = oldFill;
 		ctx.strokeStyle = oldStroke;
@@ -173,12 +180,23 @@ var Canvas21 = {};
 		this.ctx.fillText("Player", 0, Game.PlayerY);
 		this.ctx.fillText("Dealer", 0, Game.DealerY);
 
+		var winner;
+		if (winner = this.whoWon()) {
+			this.ctx.fillText('The ' + winner + ' won.', 
+				Game.ResultX, Game.ResultY);
+			function unhide(item) {
+				item.hidden = false;
+			}
+			Iter.map(this.player, unhide);
+			Iter.map(this.dealer, unhide);
+		}
+
 		var ctx = this.ctx;
 		var x = Game.PlayerX;
 		var y = Game.PlayerY;
 		Iter.map(this.player, function (item) {
 				if (!item.card) console.log(item);
-				item.card.render(ctx, x, y);
+				item.card.render(ctx, x, y, item.hidden);
 				x += Card.Width + 10;
 			});
 
@@ -186,15 +204,9 @@ var Canvas21 = {};
 		var y = Game.DealerY;
 		Iter.map(this.dealer, function (item) {
 				if (!item.card) console.log(item);
-				item.card.render(ctx, x, y);
+				item.card.render(ctx, x, y, item.hidden);
 				x += Card.Width + 10;
 			});
-
-		var winner;
-		if (winner = this.whoWon()) {
-			this.ctx.fillText('The ' + winner + ' won.', 
-				Game.ResultX, Game.ResultY);
-		}
 	}
 
 	Game.prototype.hasBusted = function (hand) {
@@ -240,13 +252,14 @@ var Canvas21 = {};
 	};
 
 	Game.prototype.step = function (playerHit) {
+		var dealerHit;
 		if (playerHit) {
 			this.hit(this.player);
 		}
-		if (this.dealerCanPlay()) {
+		if (dealerHit = this.dealerCanPlay()) {
 			this.hit(this.dealer);
 		}
-		this.render();
+		this.render(playerHit, dealerHit);
 	};
 
 	Game.prototype.whoWon = function () {
