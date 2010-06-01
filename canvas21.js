@@ -189,6 +189,13 @@ var Canvas21 = {};
 			}
 			Iter.map(this.player, unhide);
 			Iter.map(this.dealer, unhide);
+
+			var alertMessage = "alert('The game is already over." +
+				" Press the New Game button to play again.')";
+			document.getElementById("hitButton")
+				.setAttribute("onclick", alertMessage);
+			document.getElementById("standButton")
+				.setAttribute("onclick", alertMessage);
 		}
 
 		var ctx = this.ctx;
