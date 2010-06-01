@@ -18,13 +18,13 @@
 <canvas id="gameCanvas" height=120 width=480> </canvas>
 <br />
 
+<button id="hitButton" type="button" onclick="game.step(true)"> Hit </button>
+<button id="standButton" type="button" onclick="game.step(false)"> Stand </button>
+<br />
+<button type="button" onclick="location.reload()"> New Game </button>
+
 <script type="text/javascript">
  var game = new Canvas21.Game();
 </script>
-
-<button type="button" onclick="game.step(true)"> Hit </button>
-<button type="button" onclick="game.step(false)"> Stand </button>
-<br />
-<button type="button" onclick="location.reload()"> New Game </button>
 
 </body> </html>
