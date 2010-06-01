@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html> <head>
+<title> Canvas21 </title>
+<script type="text/javascript" src="http://github.com/ekiru/canvas21/raw/master/Module.js"> </script>
+
+<script type="text/javascript" src="http://github.com/ekiru/canvas21/raw/master/Enum.js"> </script>
+
+<script type="text/javascript" src="http://github.com/ekiru/canvas21/raw/master/Functional.js"> </script>
+
+<script type="text/javascript" src="http://github.com/ekiru/canvas21/raw/master/Iter.js"> </script>
+
+<script type="text/javascript" src="http://github.com/ekiru/canvas21/raw/master/Colors.js"> </script>
+
+<script type="text/javascript" src="http://github.com/ekiru/canvas21/raw/master/canvas21.js"> </script>
+</head>
+<body>
+
+<canvas id="gameCanvas" height=120 width=480> </canvas>
+<br />
+
+<script type="text/javascript">
+ var game = new Canvas21.Game();
+</script>
+
+<button type="button" onclick="game.step(true)"> Hit </button>
+<button type="button" onclick="game.step(false)"> Stand </button>
+<br />
+<button type="button" onclick="location.reload()"> New Game </button>
+
+</body> </html>
