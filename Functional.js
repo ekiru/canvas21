@@ -5,6 +5,6 @@ var Functional = {};
 	function add (a, b) {
 		return a + b;
 	}
-	Module.export(Functional, 'add', add);
+	Module._export(Functional, 'add', add);
 
 })();

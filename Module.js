@@ -2,8 +2,8 @@ var Module = {};
 
 (function () {
 	// Helper for exporting.
-	function export (module, name, val) {
+	function _export (module, name, val) {
 		module[name] = val;
 	}
-	export(Module, 'export', export);
+	_export(Module, '_export', _export);
 })();

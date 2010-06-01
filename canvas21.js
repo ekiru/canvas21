@@ -6,7 +6,7 @@ var Canvas21 = {};
 		this.rank = rank;
 		this.suit = suit;
 	}
-	Module.export(Canvas21, "Card", Card);
+	Module._export(Canvas21, "Card", Card);
 
 	Card.Ranks = new Enum(11, 'Jack', 'Queen', 'King', 'Ace');
 	Card.Suits = new Enum('Clubs', 'Diamonds', 'Hearts', 'Spades');
@@ -123,7 +123,7 @@ var Canvas21 = {};
 					});
 			});
 	}
-	Module.export(Canvas21, "Deck", Deck);
+	Module._export(Canvas21, "Deck", Deck);
 
 	Deck.prototype.shuffle = function () {
 		for (var i = this.cards.length - 1; i > 1; i--) {
@@ -161,7 +161,7 @@ var Canvas21 = {};
 		this.render();
 		console.log('Game initialized.');
 	}
-	Module.export(Canvas21, 'Game', Game);
+	Module._export(Canvas21, 'Game', Game);
 
 	Game.ResultX = 10;
 	Game.ResultY = 10;

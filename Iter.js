@@ -11,7 +11,7 @@ var Iter = {};
 			}
 		}
 	}
-	Module.export(Iter, 'forEachIn', forEachIn);
+	Module._export(Iter, 'forEachIn', forEachIn);
 
 	function map (array, func) {
 		var result = []
@@ -21,7 +21,7 @@ var Iter = {};
 		}
 		return result;
 	}
-	Module.export(Iter, 'map', map);
+	Module._export(Iter, 'map', map);
 
 	function reduce (array, func, initial) {
 		var len = array.length;
@@ -31,6 +31,6 @@ var Iter = {};
 		}
 		return accum;
 	}
-	Module.export(Iter, 'reduce', reduce);
+	Module._export(Iter, 'reduce', reduce);
 
 })();
