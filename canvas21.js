@@ -159,7 +159,6 @@ var Canvas21 = {};
 		this.hit(this.dealer);
 
 		this.render();
-		console.log('Game initialized.');
 	}
 	Module._export(Canvas21, 'Game', Game);
 
@@ -202,7 +201,6 @@ var Canvas21 = {};
 		var x = Game.PlayerX;
 		var y = Game.PlayerY;
 		Iter.map(this.player, function (item) {
-				if (!item.card) console.log(item);
 				item.card.render(ctx, x, y, item.hidden);
 				x += Card.Width + 10;
 			});
@@ -210,7 +208,6 @@ var Canvas21 = {};
 		var x = Game.DealerX;
 		var y = Game.DealerY;
 		Iter.map(this.dealer, function (item) {
-				if (!item.card) console.log(item);
 				item.card.render(ctx, x, y, item.hidden);
 				x += Card.Width + 10;
 			});
